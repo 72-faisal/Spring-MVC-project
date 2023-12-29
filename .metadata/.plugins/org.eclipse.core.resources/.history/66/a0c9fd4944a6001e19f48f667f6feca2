@@ -1,0 +1,124 @@
+package com.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.view.RedirectView;
+
+import com.dao.LoanDao;
+import com.model.Loan;
+import com.model.User;
+
+@Controller
+public class LoanController {
+
+	@Autowired
+	LoanDao Dao;
+
+	@GetMapping("/LoanApplyOnline")
+	public String LoanApplyOnline(HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		if (user != null) {
+			return "LoanApplyOnline";
+		} else {
+			// Handle the case where the user is not in the session (e.g., redirect to
+			// login)
+			return "redirect:/UserLogin";
+		}
+
+	}
+	@PostMapping("/LoanApply")
+		public String LoanApply(HttpSession session) {
+			User user= (User) session.getAttribute("user");
+			if(user!=null) {
+				return "UserFormForLoanOnline";
+			}else {
+				return "UserLogin";
+			}
+		}
+	
+	@GetMapping("/UserForForLoanOnline")
+	public String UserFormForLoanOnline() {
+		return "UserFormForLoanOnline";
+
+	}
+	@GetMapping("/UserForForLoanOnline2")
+	public String UserFormForLoanOnline2() {
+		return "UserFormForLoanOnline2";
+
+	}
+	@GetMapping("/UserForForLoanOnline3")
+	public String UserFormForLoanOnline3() {
+		return "UserFormForLoanOnline3";
+
+	}
+	
+	@PostMapping("/UploadDocuments")
+	public RedirectView UploadDocuments(@ModelAttribute Loan cust, HttpServletRequest req) {
+		Dao.getDocuments(cust);
+		RedirectView rv= new RedirectView();
+		rv.setUrl(req.getContextPath()+ "/LoanApplyOnline");
+		req.setAttribute("msg", "Data Sent Successfully!");
+		return rv;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@GetMapping("/LoanApprovedProject")
+	public String LoanApprovedProject(HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		if (user != null) {
+			return "LoanApprovedProject";
+		} else {
+			// Handle the case where the user is not in the session (e.g., redirect to
+			// login)
+			return "redirect:/UserLogin";
+		}
+	}
+	
+	@PostMapping("/LoanApproved")
+	public String LoanApproved(HttpSession session) {
+		User user= (User) session.getAttribute("user");
+		if(user!=null) {
+			return "ApprovedProjectList";
+		}else {
+			return "UserLogin";
+		}
+	}
+	@GetMapping("/project1")
+	public String project1() {
+		return "project1";
+	}
+	
+	
+	
+	
+	
+	
+	
+	@GetMapping("/LoanCalculator")
+	public String LoanCalculator(HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		if (user != null) {
+			return "LoanCalculator";
+		} else {
+			// Handle the case where the user is not in the session (e.g., redirect to
+			// login)
+			return "redirect:/UserLogin";
+		}
+	}
+	
+}

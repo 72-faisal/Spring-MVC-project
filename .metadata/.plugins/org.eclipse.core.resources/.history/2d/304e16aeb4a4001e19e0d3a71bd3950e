@@ -1,0 +1,71 @@
+package com.dao;
+
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.hibernate.SQLQuery;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
+import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.stereotype.Repository;
+
+import com.model.User;
+
+@Repository
+public class UserDao {
+
+	private HibernateTemplate hibernateTemplate;
+
+	public HibernateTemplate getHibernateTemplate() {
+		return hibernateTemplate;
+	}
+
+	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
+		this.hibernateTemplate = hibernateTemplate;
+	}
+	
+	private final SessionFactory sessionFactory;
+    public UserDao(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+	
+	@Transactional
+	public void addUser(User user) {
+		this.hibernateTemplate.save(user);
+	}
+
+	@Transactional
+	public User loginUser(String email, String password) {
+		List<User> user=hibernateTemplate.executeWithNativeSession(session ->{
+			String queryString = "SELECT * FROM user WHERE email = :email AND password = :password";
+            return session.createNativeQuery(queryString, User.class)
+                    .setParameter("email", email)
+                    .setParameter("password", password)
+                    .getResultList();
+		});
+		return user.isEmpty() ? null : user.get(0);
+	}
+	
+	@Transactional
+    public User getUser(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        return session.get(User.class, id);
+    }
+	@Transactional
+	public void UpdateProfile(User user2) {
+		  Session session = sessionFactory.getCurrentSession();
+	        String hql = "UPDATE Customer SET name = :name, contact = :contact, address = :address, email = :email WHERE id = :id";
+	        
+	        Query query = session.createQuery(hql);
+	        query.setParameter("name", user2.getName());
+	        query.setParameter("contact", user2.getContact());
+	        query.setParameter("address", user2.getAddress());
+	        query.setParameter("email", user2.getEmail());
+	        query.setParameter("id", user2.getId());
+	        
+	        int rowsUpdated = query.executeUpdate();
+	}
+	
+}

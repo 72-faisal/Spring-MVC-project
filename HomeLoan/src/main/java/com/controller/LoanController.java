@@ -1,0 +1,198 @@
+package com.controller;
+
+import java.io.File;
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.view.RedirectView;
+
+import com.dao.LoanDao;
+import com.model.Loan;
+import com.model.User;
+
+@Controller
+public class LoanController {
+
+	@Autowired
+	LoanDao Dao;
+	
+	private String extractfilename(Part file) {
+		String cd = file.getHeader("content-disposition");
+		System.out.println(cd);
+		String[] items = cd.split(";");
+		for (String string : items) {
+			if (string.trim().startsWith("filename")) {
+				return string.substring(string.indexOf("=") + 2, string.length() - 1);
+			}
+		}
+		return "";
+	}
+
+	@GetMapping("/LoanApplyOnline")
+	public String LoanApplyOnline(HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		if (user != null) {
+			return "LoanApplyOnline";
+		} else {
+			// Handle the case where the user is not in the session (e.g., redirect to
+			// login)
+			return "redirect:/UserLogin";
+		}
+
+	}
+	@PostMapping("/LoanApply")
+		public String LoanApply(HttpSession session) {
+			User user= (User) session.getAttribute("user");
+			if(user!=null) {
+				return "UserFormForLoanOnline";
+			}else {
+				return "UserLogin";
+			}
+		}
+	
+	@GetMapping("/UserForForLoanOnline")
+	public String UserFormForLoanOnline(Model model) {
+		 model.addAttribute("cust", new Loan());
+		return "UserFormForLoanOnline";
+
+	}
+
+	@GetMapping("/UserForForLoanOnline2")
+	public String UserFormForLoanOnline2(Model model) {
+		 model.addAttribute("cust", new Loan());
+		return "UserFormForLoanOnline2";
+
+	}
+	
+	
+	@GetMapping("/UserForForLoanOnline3")
+	public String UserFormForLoanOnline3(Model model) {
+		 model.addAttribute("cust", new Loan());
+		return "UserFormForLoanOnline3";
+
+	}
+	
+	@PostMapping({"/UploadDocuments", "/UploadDocuments2", "/UploadDocuments3"})
+	public String uploadDocuments(@ModelAttribute Loan cust, HttpServletRequest request, @RequestParam("currentStep") int currentStep, Model model) throws IOException, ServletException {
+	    updateLoanData(cust, currentStep, request);
+
+	    if (currentStep == 3) {
+	        saveDocumentsAndData(cust, request);
+	        model.addAttribute("loan", new Loan());
+	        return "redirect:/LoanApplyOnline";
+	    }
+
+	    return "redirect:/UserForForLoanOnline" + (currentStep + 1);
+	}
+
+	private void saveDocumentsAndData(Loan cust, HttpServletRequest request) throws IOException, ServletException {
+	    String savePath = "C:\\Users\\vhora\\OneDrive\\Documents\\Home_Loan_MVC\\HomeLoan\\src\\main\\webapp\\WEB-INF\\resources\\assets\\verify";
+	    File fileSaveDir = new File(savePath);
+	    if (!fileSaveDir.exists()) {
+	        fileSaveDir.mkdir();
+	    }
+
+	    Part file1 = request.getPart("image");
+	    String fileName = extractfilename(file1);
+	    file1.write(savePath + File.separator + fileName);
+	    String filePath = savePath + File.separator + fileName;
+
+	    String savePath2 ="C:\\Users\\vhora\\OneDrive\\Documents\\Home_Loan_MVC\\HomeLoan\\src\\main\\webapp\\WEB-INF\\resources\\assets\\verify";
+		File imgSaveDir = new File(savePath2);
+		if (!imgSaveDir.exists()) {
+			imgSaveDir.mkdir();
+		}
+	    // Save the data to the database
+	    Dao.getDocuments(cust);
+	}
+
+	private void updateLoanData(Loan cust, int currentStep, HttpServletRequest request) {
+	    // Update the loan object based on the current step
+	    switch (currentStep) {
+	        case 1:
+	            cust.setLname(request.getParameter("lname"));
+	            cust.setLemail(request.getParameter("lemail"));
+	            cust.setLaddress(request.getParameter("laddress"));
+	            cust.setLcontact(request.getParameter("lcontact"));
+	            break;
+	        case 2:
+	            cust.setPoidentity(request.getParameter("poidentity"));
+	            cust.setPoresidence(request.getParameter("poresidence"));
+	            cust.setPoincome(request.getParameter("poincome"));
+	            break;
+	        case 3:
+	            cust.setEmp_proof(request.getParameter("emp_proof"));
+	            cust.setProperty_documents(request.getParameter("property_documents"));
+	            cust.setBank_statment(request.getParameter("bank_statment"));
+	            cust.setDp_proof(request.getParameter("dp_proof"));
+	            cust.setGuarantor_document(request.getParameter("guarantor_document"));
+	            cust.setProperty_valuation_proof(request.getParameter("property_valuation_proof"));
+	            cust.setProperty_insurance(request.getParameter("property_insurance"));
+	            break;
+	    }
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	@GetMapping("/LoanApprovedProject")
+	public String LoanApprovedProject(HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		if (user != null) {
+			return "LoanApprovedProject";
+		} else {
+			// Handle the case where the user is not in the session (e.g., redirect to
+			// login)
+			return "redirect:/UserLogin";
+		}
+	}
+	
+	@PostMapping("/LoanApproved")
+	public String LoanApproved(HttpSession session) {
+		User user= (User) session.getAttribute("user");
+		if(user!=null) {
+			return "ApprovedProjectList";
+		}else {
+			return "UserLogin";
+		}
+	}
+	@GetMapping("/project1")
+	public String project1() {
+		return "project1";
+	}
+	
+	
+	
+	
+	
+	
+	
+	@GetMapping("/LoanCalculator")
+	public String LoanCalculator(HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		if (user != null) {
+			return "LoanCalculator";
+		} else {
+			// Handle the case where the user is not in the session (e.g., redirect to
+			// login)
+			return "redirect:/UserLogin";
+		}
+	}
+	
+}

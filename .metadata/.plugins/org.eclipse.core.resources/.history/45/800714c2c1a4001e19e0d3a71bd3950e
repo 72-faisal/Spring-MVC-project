@@ -1,0 +1,230 @@
+package com.controller;
+
+import java.net.http.HttpResponse;
+import java.util.Random;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
+
+import com.dao.UserDao;
+import com.model.User;
+import com.service.Servicess;
+
+@Controller
+public class UserController {
+	@Autowired
+	private UserDao dao;
+
+	@GetMapping("/")
+	public String index() {
+		return "index";
+
+	}
+
+	@GetMapping("/services")
+	public String services() {
+		return "services";
+
+	}
+
+	@GetMapping("/about")
+	public String about() {
+		return "about";
+
+	}
+
+	@GetMapping("/contact")
+	public String contact() {
+		return "contact";
+
+	}
+
+	@GetMapping("/index")
+	public String indes() {
+		return "index";
+	}
+
+	@GetMapping("/UserRegister")
+	public String UserRegister() {
+		return "UserRegister";
+	}
+
+	@PostMapping("/addUser")
+	public RedirectView addUser(@ModelAttribute User user, HttpServletRequest req) {
+		dao.addUser(user);
+		RedirectView rv = new RedirectView();
+		rv.setUrl(req.getContextPath() + "/UserLogin");
+		return rv;
+
+	}
+
+	@GetMapping("/UserLogin")
+	public String UserLogin() {
+		return "UserLogin";
+	}
+
+	@PostMapping("/LoginUser")
+	public String LoginUser(@RequestParam("email") String email, @RequestParam("password") String password, Model model,
+			HttpSession session) {
+		User user = dao.loginUser(email, password);
+		if (user != null) {
+			session.setAttribute("user", user);
+//			model.addAttribute("user", user);
+			return "UserHome";
+		} else {
+			model.addAttribute("error", "Invalid email or password");
+			return "UserLogin";
+		}
+
+	}
+
+	@GetMapping("/ForgetPassword")
+	public String getOTP() {
+		return "ForgetPassword";
+	}
+
+	@PostMapping("/getOTP")
+	public String getOTP(@RequestParam("email") String email, Model m) {
+		Random r = new Random();
+		int num = r.nextInt(999999);
+		Servicess s = new Servicess();
+		s.sendMail(email, num);
+		m.addAttribute("email", email);
+		m.addAttribute("otp", num);
+		return "VerifyOTP";
+	}
+
+	@GetMapping("/VerifyOTP")
+	public String VerifyOTP() {
+		return "VerifyOTP";
+	}
+
+	@PostMapping("/OTPVerification")
+	public String OTPVerification(@RequestParam("email") String email, @RequestParam("otp") int otp,
+			@RequestParam("otp2") int otp2, Model model) {
+		try {
+			if (otp == otp2) {
+				model.addAttribute("email", email);
+				model.addAttribute("otp", otp);
+				return "newPassword";
+			} else {
+				model.addAttribute("email", email);
+				model.addAttribute("otp", otp);
+				model.addAttribute("msg", "OTP not matched");
+				return "VerifyOTP";
+			}
+		} catch (NumberFormatException e) {
+			// Handle the case where otp1 or otp2 is not a valid integer
+			model.addAttribute("email", email);
+			model.addAttribute("msg", "Invalid OTP values");
+			return "VerifyOTP";
+		}
+
+	}
+	
+	@GetMapping("/newPassword")
+	public String newPassword() {
+		return "newPassword";
+	}
+
+	@GetMapping("/UserHome")
+	public String UserHome(HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		if (user != null) {
+			return "UserHome";
+		} else {
+			// Handle the case where the user is not in the session (e.g., redirect to
+			// login)
+			return "redirect:/UserLogin";
+		}
+
+	}
+
+	@GetMapping("/UserProfile")
+	public String UserProfile() {
+		return "UserProfile";
+	}
+
+	@GetMapping("/UserProfile/{id}")
+	public String UserProfile(@PathVariable("id") int id, Model model) {
+		User existingUser = dao.getUser(id);
+
+		if (existingUser != null) {
+			model.addAttribute("user", existingUser);
+			return "UserProfile"; // Return the update form
+		} else {
+
+			return "redirect:/UserHome";
+		}
+
+	}
+
+	@PostMapping("/UpdateProfile/{id}")
+	public String UpdateProfile(@ModelAttribute("user") User user, Model model, HttpServletResponse response) {
+		int id = user.getId();
+		User existingUser = dao.getUser(id);
+
+		if (existingUser != null) {
+			// Update the customer's information
+			existingUser.setName(user.getName());
+			existingUser.setAddress(user.getAddress());
+			existingUser.setContact(user.getContact());
+			existingUser.setGender(user.getGender());
+			existingUser.setEmail(user.getEmail());
+
+			dao.UpdateProfile(existingUser);
+			model.addAttribute("user", existingUser);
+			response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+			response.setHeader("Pragma", "no-cache");
+			response.setHeader("Expires", "0");
+			return "redirect:/UserHome";
+		} else {
+			// Handle the case where the customer doesn't exist
+			model.addAttribute("msg", "User did not exists");
+			return "redirect:/UserRegister";
+		}
+
+	}
+
+	@GetMapping("/UserChangePassword")
+	public String UserChangePassword() {
+		return "UserChangePassword";
+	}
+
+	@RequestMapping("/ChangePassword")
+	public String ChangePassword(@RequestParam("id") int id, @RequestParam("op") String oldPassword,
+			@RequestParam("np") String np, @RequestParam("cnpassword") String cnpassword, Model model) {
+		boolean flag = dao.checkOldPassword(oldPassword, id);
+		if (flag) {
+			if (np.equals(cnpassword)) {
+				dao.updatePassword(np, id);
+				return "redirect:/UserHome";
+			} else {
+				model.addAttribute("msg1", "New password and confirm new password not matched");
+				return "UserChangePassword";
+			}
+		} else {
+			model.addAttribute("msg", "Old password not matched");
+			return "UserChangePassword";
+		}
+	}
+
+	@GetMapping("/UserLogout")
+	public String UserLogout() {
+		return "UserLogout";
+	}
+
+}

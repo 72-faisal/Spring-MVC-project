@@ -1,0 +1,269 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ page isELIgnored="false"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Home Loan a Banking Category Flat Bootstrap Responsive
+	Website Template | Services :: w3layouts</title>
+<style type="text/css">
+/* Global Styles */
+body {
+	font-family: 'Poppins', sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #f5f5f5;
+}
+
+/* Header Styles */
+/*   header {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 0;
+    } */
+.top {
+	background-color: #555;
+	padding: 5px 0;
+}
+
+.top-middle ul, .top-left ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.top-middle ul li, .top-left ul li {
+	display: inline;
+	margin-right: 10px;
+}
+
+/* Apply Online Section Styles */
+.apply-online {
+	/* background-color: #fff; */
+	padding: 20px;
+	margin: 20px 0;
+	border-radius: 8px;
+	box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+.apply-online h2 span {
+	color: #333;
+}
+
+.apply-online ul {
+	list-style: none;
+	padding: 60px;
+	margin: 0;
+	text-align: center;
+}
+
+.apply-online ul li {
+	display: inline-block;
+	margin-right: 30px;
+	vertical-align: top;
+}
+
+.apply-online ul li img {
+	max-width: 100%;
+}
+
+.apply-online ul li p {
+	margin: 5px 0;
+}
+
+.apply-online .apply-btn {
+	background-color: #bfbfbf;
+	color: #fff;
+	padding: 10px 20px;
+	text-decoration: none;
+	border-radius: 5px;
+	display: inline-block;
+	margin-top: 20px;
+	    
+}
+
+/* Footer Styles */
+/*  footer {
+        background-color: #f1f1f1;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+        margin-top: 20px;
+    } */
+</style>
+<!-- Additional stylesheets -->
+<title>Home Loan a Banking Category Flat Bootstrap Responsive
+	Website Template | Services :: w3layouts</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta name="keywords"
+	content="Home Loan Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script>
+	addEventListener("load", function() {
+		setTimeout(hideURLbar, 0);
+	}, false);
+
+	function hideURLbar() {
+		window.scrollTo(0, 1);
+	}
+</script>
+
+<!-- Bootstrap Core CSS -->
+<link href="<%=request.getContextPath()%>/resources/css/bootstrap.css"
+	rel='stylesheet' type='text/css' />
+<link href="<%=request.getContextPath()%>/resources/css/style.css"
+	rel='stylesheet' type='text/css' />
+<!-- font-awesome icons -->
+<link
+	href="<%=request.getContextPath()%>/resources/css/fontawesome-all.min.css"
+	rel="stylesheet">
+<!-- //Custom Theme files -->
+<!-- online fonts -->
+<!-- titles -->
+<link
+	href="//fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800,900"
+	rel="stylesheet">
+<!-- body -->
+<link
+	href="//fonts.googleapis.com/css?family=Poppins:400,500,600,700,800"
+	rel="stylesheet">
+</head>
+
+<body>
+
+	<!-- header -->
+	<header>
+		<div class="top">
+			<div class="container">
+				<div class="t-op row">
+					<div class="col-sm-6 top-middle">
+						<ul>
+							<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+							<li><a href="#"><i class="fab fa-twitter"></i></a></li>
+							<li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+							<li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+						</ul>
+					</div>
+					<div class="col-sm-6 top-left">
+						<ul>
+							<li><i class="fas fa-phone"></i> +021 365 777</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<nav class="navbar navbar-expand-lg navbar-light">
+				<h1>
+					<a class="navbar-brand text-capitalize" href="index"> Home Loan
+					</a>
+				</h1>
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav text-center  ml-lg-auto">
+						<li class="nav-item mr-3"><a class="nav-link" href="index">Home
+								<span class="sr-only">(current)</span>
+						</a></li>
+						<li class="nav-item  mr-3"><a class="nav-link" href="about">About
+								Us</a></li>
+
+						<li class="nav-item dropdown mr-3"><a
+							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"> Services </a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="LoanApplyOnline">Apply Online</a>
+								<a class="dropdown-item" href="LoanApprovedProject">Approved
+									Project</a> <a class="dropdown-item" href="LoanCalculator">Loan
+									Calculator</a>
+							</div></li>
+						<li class="nav-item dropdown mr-3"><a
+							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"> ${user.name } </a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="UserProfile">Profile</a> <a
+									class="dropdown-item" href="UserChangePassword">Change
+									Password</a> <a class="dropdown-item" href="UserLogout">Logout</a>
+							</div></li>
+						<!-- 	<li class="nav-item">
+							<a class="nav-link" href="contact">contact</a>
+						</li> -->
+					</ul>
+				</div>
+			</nav>
+		</div>
+	</header>
+	<!-- //header -->
+<div class="apply-online resp-tab-content hor_1 resp-tab-content-active" aria-labelledby="hor_1_tab_item-1" style="display:block">
+					<h2>
+						<span>Approved Projects</span>
+					</h2>
+
+					<ul>
+						<li>
+							<p>
+								<img src="https://homeloans.sbi/images/approved-img.png" alt="SBI Approved Project" title="SBI Approved Project">
+							</p>
+
+						</li>
+						<li>
+							<p>
+								<img src="https://homeloans.sbi/images/approved-img-1.png" alt="SBI Approved Project" title="SBI Approved Project">
+							</p>
+
+						</li>
+						<li>
+							<p>
+								<img src="https://homeloans.sbi/images/approved-img-2.png" alt="SBI Approved Project" title="SBI Approved Project">
+							</p>
+
+						</li>
+						<li>
+							<p>
+								<img src="https://homeloans.sbi/images/approved-img-3.png" alt="SBI Approved Project" title="SBI Approved Project">
+							</p>
+
+						</li>
+
+					</ul>
+					<p>&nbsp;</p>
+					<p>&nbsp;</p>
+					<p align="justify">
+						<input type="checkbox" class="" id="terms_select" value="1"> By
+						clicking "Proceed" button, you will be redirected from SBI website
+						to the resources located on servers maintained and operated by
+						third parties. SBI doesn't take any responsibility for the images,
+						pictures, plan, layout, size, cost, materials or any other
+						contents in the said site. Please take judicious decisions at own
+						risk and responsibility and SBI will not be responsible for loss,
+						damage, charges or any other cost and consequences, direct or
+						indirect incurred or arising out of or in connection with any
+						decision including decision to purchase any property displayed in
+						the said site. By clicking the "Proceed" button, you will be
+						agreeing to the above.
+					</p>
+					<p>&nbsp;</p>
+					<p class="txt-center">
+						<a class="apply-btn" target="_blank" href="https://www.sbirealty.in/?utm_source=HLmicrosite&amp;utm_medium=bottom" onclick="if ($('#terms_select').is(':checked')) {
+                                $('#terms_select').removeClass('error-chkbox');
+                                return true;
+                            } else {
+                                $('#terms_select').addClass('error-chkbox');
+                                alert('Kindly accept to proceed');
+                                $('#terms_select').focus();
+                                event.preventDefault();
+                                return false;
+                            }" previewlistener="true">Proceed <i class="arrow-icon"></i></a>
+					</p>
+				</div>
+</body>
+</html>
