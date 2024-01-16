@@ -1,0 +1,12 @@
+package com.model;
+
+
+public class LoanClac {
+	
+	private double loanAmount;
+	private double interestRate;
+	private int loanTerm;
+	private double monthlyPayment;
+	private Strinf formattedLoanAmount;
+
+}

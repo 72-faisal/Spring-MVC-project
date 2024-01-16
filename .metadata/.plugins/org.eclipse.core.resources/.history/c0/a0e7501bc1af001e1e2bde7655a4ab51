@@ -1,0 +1,34 @@
+package com.model;
+
+
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
+
+@Entity
+@Table(name = "User_Document")
+public class Loan {
+
+	@Id
+	@Column(name = "lid")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+	private String lname, lemail, laddress, lcontact;
+	@Transient 
+	private MultipartFile poidentity, poresidence, poincome, emp_proof, property_documents, bank_statment, dp_proof,
+		guarantor_document, property_valuation_proof, property_insurance;
+
+
+	/*
+	 * @OneToMany private List<User> user;
+	 */
+	
+	
+}

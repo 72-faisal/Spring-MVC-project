@@ -66,7 +66,7 @@ public class UserDao {
 		query.setParameter("address", user.getAddress());
 		query.setParameter("email", user.getEmail());
 		query.setParameter("id", user.getId());
-
+		
 		int rowsUpdated = query.executeUpdate();
 
 		session.clear();

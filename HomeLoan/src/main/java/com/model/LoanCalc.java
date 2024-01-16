@@ -1,0 +1,49 @@
+package com.model;
+
+
+public class LoanCalc {
+	
+	private double loanAmount;
+	private double interestRate;
+	private int loanTerm;
+	private double monthlyPayment;
+	private String formattedLoanAmount;
+	public double getLoanAmount() {
+		return loanAmount;
+	}
+	public void setLoanAmount(double loanAmount) {
+		this.loanAmount = loanAmount;
+	}
+	public double getInterestRate() {
+		return interestRate;
+	}
+	public void setInterestRate(double interestRate) {
+		this.interestRate = interestRate;
+	}
+	public int getLoanTerm() {
+		return loanTerm;
+	}
+	public void setLoanTerm(int loanTerm) {
+		this.loanTerm = loanTerm;
+	}
+	public double getMonthlyPayment() {
+		return monthlyPayment;
+	}
+	public void setMonthlyPayment(double monthlyPayment) {
+		this.monthlyPayment = monthlyPayment;
+	}
+	public String getFormattedLoanAmount() {
+		return formattedLoanAmount;
+	}
+	public void setFormattedLoanAmount(String formattedLoanAmount) {
+		this.formattedLoanAmount = formattedLoanAmount;
+	}
+	@Override
+	public String toString() {
+		return "LoanClac [loanAmount=" + loanAmount + ", interestRate=" + interestRate + ", loanTerm=" + loanTerm
+				+ ", monthlyPayment=" + monthlyPayment + ", formattedLoanAmount=" + formattedLoanAmount + "]";
+	}
+	
+	
+
+}

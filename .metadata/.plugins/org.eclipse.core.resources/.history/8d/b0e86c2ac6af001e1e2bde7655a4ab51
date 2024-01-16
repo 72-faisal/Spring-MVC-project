@@ -1,0 +1,84 @@
+package com.model;
+
+
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
+
+@Entity
+@Table(name = "User_Document")
+public class Loan {
+
+	@Id
+	@Column(name = "lid")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+	private String lname, lemail, laddress, lcontact;
+	@Transient
+    private MultipartFile poidentity;
+
+    @Column(name = "poidentity_path")
+    private String poidentityPath;
+
+    @Transient
+    private MultipartFile poresidence;
+
+    @Column(name = "poresidence_path")
+    private String poresidencePath;
+
+    @Transient
+    private MultipartFile poincome;
+
+    @Column(name = "poincome_path")
+    private String poincomePath;
+
+    @Transient
+    private MultipartFile emp_proof;
+
+    @Column(name = "emp_proof_path")
+    private String empProofPath;
+
+    @Transient
+    private MultipartFile property_documents;
+
+    @Column(name = "property_documents_path")
+    private String propertyDocumentsPath;
+
+    @Transient
+    private MultipartFile bank_statment;
+
+    @Column(name = "bank_statment_path")
+    private String bankStatmentPath;
+
+    @Transient
+    private MultipartFile dp_proof;
+
+    @Column(name = "dp_proof_path")
+    private String dpProofPath;
+
+    @Transient
+    private MultipartFile guarantor_document;
+
+    @Column(name = "guarantor_document_path")
+    private String guarantorDocumentPath;
+
+    @Transient
+    private MultipartFile property_valuation_proof;
+
+    @Column(name = "property_valuation_proof_path")
+    private String propertyValuationProofPath;
+
+    @Transient
+    private MultipartFile property_insurance;
+
+    @Column(name = "property_insurance_path")
+    private String propertyInsurancePath;
+		
+}

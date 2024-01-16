@@ -216,44 +216,29 @@ a:hover {
 								<tr>
 									<td>2</td>
 									<td>Project B</td>
-									<td><a href="http://example.com/projectB/details">Details</a></td>
+									<td><a href="project2">Details</a></td>
 								</tr>
 								<tr>
 									<td>3</td>
 									<td>Project C</td>
-									<td><a href="http://example.com/projectC/details">Details</a></td>
+									<td><a href="project3">Details</a></td>
 								</tr>
 								<tr>
 									<td>4</td>
 									<td>Project D</td>
-									<td><a href="http://example.com/projectD/details">Details</a></td>
+									<td><a href="project4">Details</a></td>
 								</tr>
 								<tr>
 									<td>5</td>
 									<td>Project E</td>
-									<td><a href="http://example.com/projectD/details">Details</a></td>
+									<td><a href="project5">Details</a></td>
 								</tr>
 								<tr>
 									<td>6</td>
 									<td>Project F</td>
-									<td><a href="http://example.com/projectD/details">Details</a></td>
+									<td><a href="project6">Details</a></td>
 								</tr>
-								<tr>
-									<td>7</td>
-									<td>Project G</td>
-									<td><a href="http://example.com/projectD/details">Details</a></td>
-								</tr>
-
-								<tr>
-									<td>8</td>
-									<td>Project H</td>
-									<td><a href="http://example.com/projectD/details">Details</a></td>
-								</tr>
-								<tr>
-									<td>9</td>
-									<td>Project I</td>
-									<td><a href="http://example.com/projectD/details">Details</a></td>
-								</tr>
+								
 
 							</tbody>
 							

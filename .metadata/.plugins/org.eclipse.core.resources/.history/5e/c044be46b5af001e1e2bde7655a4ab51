@@ -1,0 +1,81 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<div class="form-container">
+    <form id="loanForm">
+        <!-- Part 1: Personal Information -->
+        <div class="form-slide">
+            <h2>Personal Information</h2>
+		    <label for="id">ID:</label>
+		    <input type="text" id="id" name="id" required><br>
+
+    		<label for="lname">Last Name:</label>
+    		<input type="text" id="lname" name="lname" required><br>
+
+		    <label for="lemail">Email:</label>
+		    <input type="email" id="lemail" name="lemail" required><br>
+
+		    <label for="laddress">Address:</label>
+		    <input type="text" id="laddress" name="laddress" required><br>
+
+		    <label for="lcontact">Contact:</label>
+		    <input type="text" id="lcontact" name="lcontact" required><br>
+
+            <!-- ... (your personal information fields) -->
+            <button type="button" onclick="nextSlide(2)">Next</button>
+        </div>
+
+        <!-- Part 2: Proof Documents -->
+        <div class="form-slide">
+            <h2>Proof Documents</h2>
+           <label for="poidentity">Identity Proof:</label>
+ 		   <input type="text" id="poidentity" name="poidentity" required><br>
+
+    		<label for="poresidence">Residence Proof:</label>
+		    <input type="text" id="poresidence" name="poresidence" required><br>
+
+		    <label for="poincome">Income Proof:</label>
+    		<input type="text" id="poincome" name="poincome" required><br>
+
+    		<label for="emp_proof">Employment Proof:</label>
+    		<input type="text" id="emp_proof" name="emp_proof" required><br>
+
+    		<label for="property_documents">Property Documents:</label>
+    		<input type="text" id="property_documents" name="property_documents" required><br>
+            <!-- ... (your proof documents fields) -->
+            <button type="button" onclick="nextSlide(3)">Next</button>
+        </div>
+
+        <!-- Part 3: Additional Documents -->
+        <div class="form-slide">
+         <h2>Additional Documents</h2>
+ 	    	<label for="bank_statment">Bank Statement:</label>
+	    	<input type="text" id="bank_statment" name="bank_statment" required><br>
+
+    		<label for="dp_proof">Down Payment Proof:</label>
+    		<input type="text" id="dp_proof" name="dp_proof" required><br>
+
+		    <label for="guarantor_document">Guarantor Document:</label>
+    		<input type="text" id="guarantor_document" name="guarantor_document" required><br>
+
+    		<label for="property_valuation_proof">Property Valuation Proof:</label>
+	    	<input type="text" id="property_valuation_proof" name="property_valuation_proof" required><br>
+
+    		<label for="property_insurance">Property Insurance:</label>
+    		<input type="text" id="property_insurance" name="property_insurance" required><br>
+
+    <!-- Submit Button -->
+    		<input type="submit" value="Submit">
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+127.0.0.1 - - [09/Jan/2024:14:24:23 +0530] "GET / HTTP/1.1" 404 751
+0:0:0:0:0:0:0:1 - - [09/Jan/2024:14:24:35 +0530] "GET /HomeLoan/ HTTP/1.1" 500 71854
+0:0:0:0:0:0:0:1 - - [09/Jan/2024:14:24:36 +0530] "GET /favicon.ico HTTP/1.1" 404 762
+127.0.0.1 - - [09/Jan/2024:14:25:06 +0530] "GET / HTTP/1.1" 404 751
+0:0:0:0:0:0:0:1 - - [09/Jan/2024:14:25:20 +0530] "GET /HomeLoan/ HTTP/1.1" 200 26493
+0:0:0:0:0:0:0:1 - - [09/Jan/2024:14:25:31 +0530] "GET /HomeLoan/UserLogin HTTP/1.1" 200 11679
+0:0:0:0:0:0:0:1 - - [09/Jan/2024:14:25:55 +0530] "POST /HomeLoan/LoginUser HTTP/1.1" 200 26727
+0:0:0:0:0:0:0:1 - - [09/Jan/2024:14:26:07 +0530] "GET /HomeLoan/LoanApplyOnline HTTP/1.1" 200 13093
+0:0:0:0:0:0:0:1 - - [09/Jan/2024:14:26:13 +0530] "POST /HomeLoan/LoanApply HTTP/1.1" 200 12979
+0:0:0:0:0:0:0:1 - - [09/Jan/2024:14:27:03 +0530] "POST /HomeLoan/UserFormForLoanOnline2 HTTP/1.1" 404 682
+0:0:0:0:0:0:0:1 - - [09/Jan/2024:14:27:17 +0530] "GET /HomeLoan/LoanApprovedProject HTTP/1.1" 200 14051
+0:0:0:0:0:0:0:1 - - [09/Jan/2024:14:27:21 +0530] "POST /HomeLoan/LoanApproved HTTP/1.1" 200 13519
+0:0:0:0:0:0:0:1 - - [09/Jan/2024:14:27:31 +0530] "GET /HomeLoan/project1 HTTP/1.1" 200 2382
+0:0:0:0:0:0:0:1 - - [09/Jan/2024:14:28:30 +0530] "GET /HomeLoan/LoanCalculator HTTP/1.1" 200 13724
+0:0:0:0:0:0:0:1 - - [09/Jan/2024:14:28:42 +0530] "GET /HomeLoan/homeLoanEMI HTTP/1.1" 404 682

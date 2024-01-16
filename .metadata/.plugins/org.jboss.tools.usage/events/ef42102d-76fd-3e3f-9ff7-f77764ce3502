@@ -1,9 +1,9 @@
-#Fri Dec 29 17:05:27 IST 2023
+#Tue Jan 16 12:43:45 IST 2024
 ct=jbt
 a=installed
-c=2
+c=1
 s=0
-d=1703849727973
+d=1705389225581
 v=2.3.100
 cmp=usage
 cl=AS-CDI-HIBERNATE-MAVEN-OPENSHIFT-RUNTIME
